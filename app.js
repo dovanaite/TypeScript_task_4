@@ -55,4 +55,4 @@ if (workersString != null) {
         workers2.push(newDarbuotojas);
     });
 }
-console.log(workersData[0]._vardas);
+console.log(workers2);

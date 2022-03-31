@@ -64,4 +64,4 @@ workersData.forEach((emp:dataDarbuotojas) => {
 
 }
 
-console.log(workersData[0]._vardas);
+console.log(workers2);
