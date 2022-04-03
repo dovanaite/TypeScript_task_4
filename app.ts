@@ -29,6 +29,15 @@ class Darbuotojas{
 
 }
 
+const btnPrideti=document.getElementById("prideti");
+const btnIstrinti=document.getElementById("istrinti");
+const inpVardas = <HTMLInputElement>document.getElementById("vardas");
+const inpPavarde = <HTMLInputElement>document.getElementById("pavarde");
+const inpAtlyginimas = <HTMLInputElement>document.getElementById("atlyginimas");
+const output=document.getElementById("output");
+const outMokesciai=document.getElementById("mokesciai");
+
+
 let workers: Darbuotojas[] = [];
 workers.push(new Darbuotojas("Zbitmen", "Miauuu", 2000))
 workers.push(new Darbuotojas("Mauglis", "Mau", 1500))
@@ -36,20 +45,22 @@ workers.push(new Darbuotojas("Fre", "Maaau", 2500))
 
 let workers2: Darbuotojas[] = [];
 
-let workersString = JSON.stringify(workers);
+let workersString = localStorage.getItem("darbuotojai"); //paima ir grąžina duomenis iš local storage
 
-console.log(workers[0].vardas);
-console.log(workers[1].vardas);
-console.log(workers[2].vardas);
-console.log('DATA STRING', workersString);
 
-console.log(`${workers[0].vardas} pays ${workers[0].algaGPM()}`)
+// console.log(workers[0].vardas);
+// console.log(workers[1].vardas);
+// console.log(workers[2].vardas);
+// console.log('DATA STRING', workersString);
 
-let workersData = JSON.parse(workersString);
+// console.log(`${workers[0].vardas} pays ${workers[0].algaGPM()}`)
+
+
 if(workersString != null){
 
+let workersData = JSON.parse(workersString);
 
-console.log('DATA', workersData);
+// console.log('DATA', workersData);
 
 interface dataDarbuotojas{
     _vardas:string,
@@ -64,4 +75,68 @@ workersData.forEach((emp:dataDarbuotojas) => {
 
 }
 
-console.log(workers2);
+let outputWorkers = () => {
+
+    if (output!=null){
+        output.innerHTML="";
+
+        let gpmSuma = 0;
+        let psdSuma = 0;
+        let vsdSuma = 0;
+        
+        workers2.forEach((darbuotojas, indeksas) => {
+
+            gpmSuma += darbuotojas.algaGPM();
+            psdSuma += darbuotojas.algaPSD();
+            vsdSuma += darbuotojas.algaVSD();
+     
+
+            const li=document.createElement("li");
+            li.className="list-group-item";
+            li.textContent= `${darbuotojas.vardas} ${darbuotojas.pavarde} uždirba ${darbuotojas.atlyginimas} Eur.`, 
+            output.appendChild(li);
+
+            const btn = document.createElement("button");
+            btn.textContent="Ištrinti";
+            btn.className="btn btn-danger float-end";
+            btn.onclick=()=>{
+                deleteDarbuotojas(indeksas);
+                console.log("Ištrynėme: "+preke.pavadinimas+" "+indeksas);
+                
+            };
+            li.appendChild(btn);
+        })
+
+ outMokesciai.textContent=`${Math.floor(gpmSuma)} Eur GPM, ${Math.floor(psdSuma)} Eur PSD, ${Math.floor(vsdSuma)} Eur VSD.`
+};
+}
+
+console.log(btnPrideti);
+
+
+let deleteDarbuotojas = (indeksas:number) =>{
+    workers2.splice(indeksas, 1);
+    outputWorkers();
+    localStorage.setItem("darbuotojai",JSON.stringify(workers2)); //atnaujina local storage
+}
+
+
+if (btnPrideti!=null){
+    btnPrideti.onclick = () => {
+        workers2.push(new Darbuotojas(inpVardas.value,inpPavarde.value,inpAtlyginimas.valueAsNumber));
+        outputWorkers();
+        localStorage.setItem("darbuotojai",JSON.stringify(workers2));
+        console.log('pridejau');
+    };
+}
+
+if (btnIstrinti != null){
+    btnIstrinti.onclick = () =>{
+        outputWorkers();
+    }
+}
+
+outputWorkers();
+
+
+// console.log(workers2);
