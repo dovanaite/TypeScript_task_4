@@ -17,8 +17,8 @@ vsd - grąžina valstybinį socialinį draudimą (12.52%)
 
 6. Suprogramuokite funkcijas ir išveskite į tinklapį informaciją apie mokamus atlyginimus:
 
-kiek įmonė bendrai sumoka gpm mokestį
-kiek įmonė sumoka psd
+kiek įmonė bendrai sumoka gpm mokestį;
+kiek įmonė sumoka psd;
 kiek įmonė sumoka vsd
 
 7. Užkraukite ir išsaugokite duomenis į naršyklės "localstorage"
