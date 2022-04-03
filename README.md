@@ -9,8 +9,8 @@ List of workers - adding, deleting to/from local storage
 
 4. Klasėje sukurkite tris metodus: 
 
-gpm - grąžina gyventojo pajamų mokestį (paprastumo dėlei imkime 20% nuo pajamų)
-psd - grąžina privalomąjį sveikatos draudimą (6,98%)
+gpm - grąžina gyventojo pajamų mokestį (paprastumo dėlei imkime 20% nuo pajamų);
+psd - grąžina privalomąjį sveikatos draudimą (6,98%);
 vsd - grąžina valstybinį socialinį draudimą (12.52%)
 
 5. Sukurkite masyvą sudarytą iš darbuotojų. Padarykite tinklapyje galimybę į tą masyvą įdėti darbuotojus. Juos turėtų rodyti bendrame sąraše.
